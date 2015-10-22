@@ -5402,52 +5402,6 @@ static void mavlink_test_resource_request(uint8_t system_id, uint8_t component_i
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 }
 
-static void mavlink_test_scaled_pressure3(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
-{
-	mavlink_message_t msg;
-        uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
-        uint16_t i;
-	mavlink_scaled_pressure3_t packet_in = {
-		963497464,45.0,73.0,17859
-    };
-	mavlink_scaled_pressure3_t packet1, packet2;
-        memset(&packet1, 0, sizeof(packet1));
-        	packet1.time_boot_ms = packet_in.time_boot_ms;
-        	packet1.press_abs = packet_in.press_abs;
-        	packet1.press_diff = packet_in.press_diff;
-        	packet1.temperature = packet_in.temperature;
-        
-        
-
-        memset(&packet2, 0, sizeof(packet2));
-	mavlink_msg_scaled_pressure3_encode(system_id, component_id, &msg, &packet1);
-	mavlink_msg_scaled_pressure3_decode(&msg, &packet2);
-        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
-
-        memset(&packet2, 0, sizeof(packet2));
-	mavlink_msg_scaled_pressure3_pack(system_id, component_id, &msg , packet1.time_boot_ms , packet1.press_abs , packet1.press_diff , packet1.temperature );
-	mavlink_msg_scaled_pressure3_decode(&msg, &packet2);
-        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
-
-        memset(&packet2, 0, sizeof(packet2));
-	mavlink_msg_scaled_pressure3_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.time_boot_ms , packet1.press_abs , packet1.press_diff , packet1.temperature );
-	mavlink_msg_scaled_pressure3_decode(&msg, &packet2);
-        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
-
-        memset(&packet2, 0, sizeof(packet2));
-        mavlink_msg_to_send_buffer(buffer, &msg);
-        for (i=0; i<mavlink_msg_get_send_buffer_length(&msg); i++) {
-        	comm_send_ch(MAVLINK_COMM_0, buffer[i]);
-        }
-	mavlink_msg_scaled_pressure3_decode(last_msg, &packet2);
-        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
-        
-        memset(&packet2, 0, sizeof(packet2));
-	mavlink_msg_scaled_pressure3_send(MAVLINK_COMM_1 , packet1.time_boot_ms , packet1.press_abs , packet1.press_diff , packet1.temperature );
-	mavlink_msg_scaled_pressure3_decode(last_msg, &packet2);
-        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
-}
-
 static void mavlink_test_control_system_state(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
 {
 	mavlink_message_t msg;
@@ -5661,6 +5615,101 @@ static void mavlink_test_landing_target(uint8_t system_id, uint8_t component_id,
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 }
 
+static void mavlink_test_sonar_distance(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
+{
+	mavlink_message_t msg;
+        uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
+        uint16_t i;
+	mavlink_sonar_distance_t packet_in = {
+		17.0,45.0,73.0,101.0,129.0,157.0,185.0
+    };
+	mavlink_sonar_distance_t packet1, packet2;
+        memset(&packet1, 0, sizeof(packet1));
+        	packet1.sonar_front = packet_in.sonar_front;
+        	packet1.sonar_behind = packet_in.sonar_behind;
+        	packet1.sonar_left = packet_in.sonar_left;
+        	packet1.sonar_right = packet_in.sonar_right;
+        	packet1.sonar_up = packet_in.sonar_up;
+        	packet1.sonar_down = packet_in.sonar_down;
+        	packet1.sonar_cam = packet_in.sonar_cam;
+        
+        
+
+        memset(&packet2, 0, sizeof(packet2));
+	mavlink_msg_sonar_distance_encode(system_id, component_id, &msg, &packet1);
+	mavlink_msg_sonar_distance_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+	mavlink_msg_sonar_distance_pack(system_id, component_id, &msg , packet1.sonar_front , packet1.sonar_behind , packet1.sonar_left , packet1.sonar_right , packet1.sonar_up , packet1.sonar_down , packet1.sonar_cam );
+	mavlink_msg_sonar_distance_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+	mavlink_msg_sonar_distance_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.sonar_front , packet1.sonar_behind , packet1.sonar_left , packet1.sonar_right , packet1.sonar_up , packet1.sonar_down , packet1.sonar_cam );
+	mavlink_msg_sonar_distance_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+        mavlink_msg_to_send_buffer(buffer, &msg);
+        for (i=0; i<mavlink_msg_get_send_buffer_length(&msg); i++) {
+        	comm_send_ch(MAVLINK_COMM_0, buffer[i]);
+        }
+	mavlink_msg_sonar_distance_decode(last_msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+        
+        memset(&packet2, 0, sizeof(packet2));
+	mavlink_msg_sonar_distance_send(MAVLINK_COMM_1 , packet1.sonar_front , packet1.sonar_behind , packet1.sonar_left , packet1.sonar_right , packet1.sonar_up , packet1.sonar_down , packet1.sonar_cam );
+	mavlink_msg_sonar_distance_decode(last_msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+}
+
+static void mavlink_test_laser_distance(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
+{
+	mavlink_message_t msg;
+        uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
+        uint16_t i;
+	mavlink_laser_distance_t packet_in = {
+		17.0,45.0,73.0,101.0
+    };
+	mavlink_laser_distance_t packet1, packet2;
+        memset(&packet1, 0, sizeof(packet1));
+        	packet1.min_distance = packet_in.min_distance;
+        	packet1.angle = packet_in.angle;
+        	packet1.laser_x = packet_in.laser_x;
+        	packet1.laser_y = packet_in.laser_y;
+        
+        
+
+        memset(&packet2, 0, sizeof(packet2));
+	mavlink_msg_laser_distance_encode(system_id, component_id, &msg, &packet1);
+	mavlink_msg_laser_distance_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+	mavlink_msg_laser_distance_pack(system_id, component_id, &msg , packet1.min_distance , packet1.angle , packet1.laser_x , packet1.laser_y );
+	mavlink_msg_laser_distance_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+	mavlink_msg_laser_distance_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.min_distance , packet1.angle , packet1.laser_x , packet1.laser_y );
+	mavlink_msg_laser_distance_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+        mavlink_msg_to_send_buffer(buffer, &msg);
+        for (i=0; i<mavlink_msg_get_send_buffer_length(&msg); i++) {
+        	comm_send_ch(MAVLINK_COMM_0, buffer[i]);
+        }
+	mavlink_msg_laser_distance_decode(last_msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+        
+        memset(&packet2, 0, sizeof(packet2));
+	mavlink_msg_laser_distance_send(MAVLINK_COMM_1 , packet1.min_distance , packet1.angle , packet1.laser_x , packet1.laser_y );
+	mavlink_msg_laser_distance_decode(last_msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+}
+
 static void mavlink_test_vibration(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
 {
 	mavlink_message_t msg;
@@ -5859,34 +5908,33 @@ static void mavlink_test_message_interval(uint8_t system_id, uint8_t component_i
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 }
 
-static void mavlink_test_extended_sys_state(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
+static void mavlink_test_vtol_state(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
 {
 	mavlink_message_t msg;
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
-	mavlink_extended_sys_state_t packet_in = {
-		5,72
+	mavlink_vtol_state_t packet_in = {
+		5
     };
-	mavlink_extended_sys_state_t packet1, packet2;
+	mavlink_vtol_state_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
-        	packet1.vtol_state = packet_in.vtol_state;
-        	packet1.landed_state = packet_in.landed_state;
+        	packet1.state = packet_in.state;
         
         
 
         memset(&packet2, 0, sizeof(packet2));
-	mavlink_msg_extended_sys_state_encode(system_id, component_id, &msg, &packet1);
-	mavlink_msg_extended_sys_state_decode(&msg, &packet2);
+	mavlink_msg_vtol_state_encode(system_id, component_id, &msg, &packet1);
+	mavlink_msg_vtol_state_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-	mavlink_msg_extended_sys_state_pack(system_id, component_id, &msg , packet1.vtol_state , packet1.landed_state );
-	mavlink_msg_extended_sys_state_decode(&msg, &packet2);
+	mavlink_msg_vtol_state_pack(system_id, component_id, &msg , packet1.state );
+	mavlink_msg_vtol_state_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-	mavlink_msg_extended_sys_state_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.vtol_state , packet1.landed_state );
-	mavlink_msg_extended_sys_state_decode(&msg, &packet2);
+	mavlink_msg_vtol_state_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.state );
+	mavlink_msg_vtol_state_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
@@ -5894,12 +5942,12 @@ static void mavlink_test_extended_sys_state(uint8_t system_id, uint8_t component
         for (i=0; i<mavlink_msg_get_send_buffer_length(&msg); i++) {
         	comm_send_ch(MAVLINK_COMM_0, buffer[i]);
         }
-	mavlink_msg_extended_sys_state_decode(last_msg, &packet2);
+	mavlink_msg_vtol_state_decode(last_msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
         
         memset(&packet2, 0, sizeof(packet2));
-	mavlink_msg_extended_sys_state_send(MAVLINK_COMM_1 , packet1.vtol_state , packet1.landed_state );
-	mavlink_msg_extended_sys_state_decode(last_msg, &packet2);
+	mavlink_msg_vtol_state_send(MAVLINK_COMM_1 , packet1.state );
+	mavlink_msg_vtol_state_decode(last_msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 }
 
@@ -6333,16 +6381,17 @@ static void mavlink_test_common(uint8_t system_id, uint8_t component_id, mavlink
 	mavlink_test_actuator_control_target(system_id, component_id, last_msg);
 	mavlink_test_altitude(system_id, component_id, last_msg);
 	mavlink_test_resource_request(system_id, component_id, last_msg);
-	mavlink_test_scaled_pressure3(system_id, component_id, last_msg);
 	mavlink_test_control_system_state(system_id, component_id, last_msg);
 	mavlink_test_battery_status(system_id, component_id, last_msg);
 	mavlink_test_autopilot_version(system_id, component_id, last_msg);
 	mavlink_test_landing_target(system_id, component_id, last_msg);
+	mavlink_test_sonar_distance(system_id, component_id, last_msg);
+	mavlink_test_laser_distance(system_id, component_id, last_msg);
 	mavlink_test_vibration(system_id, component_id, last_msg);
 	mavlink_test_home_position(system_id, component_id, last_msg);
 	mavlink_test_set_home_position(system_id, component_id, last_msg);
 	mavlink_test_message_interval(system_id, component_id, last_msg);
-	mavlink_test_extended_sys_state(system_id, component_id, last_msg);
+	mavlink_test_vtol_state(system_id, component_id, last_msg);
 	mavlink_test_v2_extension(system_id, component_id, last_msg);
 	mavlink_test_memory_vect(system_id, component_id, last_msg);
 	mavlink_test_debug_vect(system_id, component_id, last_msg);
