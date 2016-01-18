@@ -4,10 +4,10 @@
 
 typedef struct __mavlink_field_size_t
 {
- float length; /*<  L */
- float width; /*<  W */
- float height; /*<  H */
- uint8_t times; /*<  T */
+ float length; ///<  L 
+ float width; ///<  W 
+ float height; ///<  H 
+ uint8_t times; ///<  T 
 } mavlink_field_size_t;
 
 #define MAVLINK_MSG_ID_FIELD_SIZE_LEN 13

@@ -4,11 +4,11 @@
 
 typedef struct __mavlink_field_size_confirm_t
 {
- float length; /*<  L */
- float width; /*<  W */
- float height; /*<  H */
- uint8_t times; /*<  T */
- uint8_t confirm; /*<  if confirmed, value=1 */
+ float length; ///<  L 
+ float width; ///<  W 
+ float height; ///<  H 
+ uint8_t times; ///<  T 
+ uint8_t confirm; ///<  if confirmed, value=1 
 } mavlink_field_size_confirm_t;
 
 #define MAVLINK_MSG_ID_FIELD_SIZE_CONFIRM_LEN 14

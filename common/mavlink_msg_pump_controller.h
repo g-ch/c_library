@@ -4,8 +4,8 @@
 
 typedef struct __mavlink_pump_controller_t
 {
- float pump_speed_sp; /*< pump*/
- float spray_speed_sp; /*< spray*/
+ float pump_speed_sp; ///< pump
+ float spray_speed_sp; ///< spray
 } mavlink_pump_controller_t;
 
 #define MAVLINK_MSG_ID_PUMP_CONTROLLER_LEN 8

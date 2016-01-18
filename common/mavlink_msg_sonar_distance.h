@@ -4,13 +4,13 @@
 
 typedef struct __mavlink_sonar_distance_t
 {
- float sonar_front; /*< sonar distance value 1*/
- float sonar_behind; /*< sonar distance value 2*/
- float sonar_left; /*< sonar distance value 3*/
- float sonar_right; /*< sonar distance value 4*/
- float sonar_up; /*< sonar distance value 5*/
- float sonar_down; /*< sonar distance value 6*/
- float sonar_cam; /*< sonar distance value 7*/
+ float sonar_front; ///< sonar distance value 1
+ float sonar_behind; ///< sonar distance value 2
+ float sonar_left; ///< sonar distance value 3
+ float sonar_right; ///< sonar distance value 4
+ float sonar_up; ///< sonar distance value 5
+ float sonar_down; ///< sonar distance value 6
+ float sonar_cam; ///< sonar distance value 7
 } mavlink_sonar_distance_t;
 
 #define MAVLINK_MSG_ID_SONAR_DISTANCE_LEN 28

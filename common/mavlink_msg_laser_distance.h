@@ -4,10 +4,10 @@
 
 typedef struct __mavlink_laser_distance_t
 {
- float min_distance; /*< minimum distance*/
- float angle; /*< angle*/
- float laser_x; /*< laser x*/
- float laser_y; /*< laser y*/
+ float min_distance; ///< minimum distance
+ float angle; ///< angle
+ float laser_x; ///< laser x
+ float laser_y; ///< laser y
 } mavlink_laser_distance_t;
 
 #define MAVLINK_MSG_ID_LASER_DISTANCE_LEN 16
